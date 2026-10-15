@@ -9,21 +9,27 @@ public class VersionController : ControllerBase
 
 {
     [HttpGet("{id}")]
-    public IActionResult GetVersion(string id)
-    {
-        if (id != "MDL100"){
-            return NotFound(new
+    public IActionResult GetVersion(string id) {
+        if (id != "MDL100" && id != "MDL200") {
+            return NotFound(new { 
+                message = "License not found" });
+        }
+
+               if (id == "MDL100")
+        {
+            return Ok(new
             {
-                message = "License not found"
+                id = id,
+                name = "Lamine Yamal",
+                version = "1.0.0"
             });
         }
 
         return Ok(new
         {
-            id = "MDL100",
-            name = "Lamine Yamal", 
-            version = "1.0.0"
-
+            id = id,
+            name = "raphina",
+            version = "2.0.0"
         });
     }
 }
