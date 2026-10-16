@@ -4,26 +4,28 @@ using MdlTraining.Api.Models;
 
 public class LicenseService {
 
-public License? GetLicense (string Id){
+    private readonly List<License> _licenses = new (){
 
-            if (Id == "MDL100")
-    {
-        return new License
-        {
-            Id = Id,
+        new License{
+            Id = "MDL100",
             Name = "Lamine Yamal",
             Version = "1.0.0"
-        };
-    }
-            if (Id == "MDL200")
-{
-    return new License
-    {
-        Id = Id,
-        Name = "raphina",
-        Version = "2.0.0"
+        }, 
+
+        new License {
+            Id = "MDL200",
+            Name = "Raphina",
+            Version = "2.0.0"
+        }
     };
-}
-return null;
-}
+
+    public License? GetLicense(string id){
+        return _licenses.FirstOrDefault(
+            license => license.Id == id
+        );
+    }
+
+    public List<License> GetAllLicenses(){
+        return _licenses;
+    }
 }
