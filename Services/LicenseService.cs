@@ -28,4 +28,10 @@ public class LicenseService {
     public List<License> GetAllLicenses(){
         return _licenses;
     }
+
+    public void AddLicense (License license)
+    {
+        _licenses.Add(license);
+
+    }
 }

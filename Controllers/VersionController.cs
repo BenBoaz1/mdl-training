@@ -7,6 +7,8 @@ using MdlTraining.Api.Services;
 // Hii inatuwezesha kutumia LicenseService
 // ambayo tulitengeneza kwenye folder ya Services.
 
+using MdlTraining.Api.Models;
+
 namespace MdlTraining.Api.Controllers;
 // Namespace ni kama anuani ya class yetu.
 // Inaonyesha kwamba VersionController ipo kwenye Controllers.
@@ -118,6 +120,13 @@ public class VersionController : ControllerBase
     [HttpGet("/licenses")]
     public IActionResult GetAllLicenses(){
         var license = _licenseService.GetAllLicenses();
+
+        return Ok(license);
+    }
+
+    [HttpPost("/licenses")]
+    public IActionResult CreateLicense([FromBody] License license){
+        _licenseService.AddLicense(license);
 
         return Ok(license);
     }
