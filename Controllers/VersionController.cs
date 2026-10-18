@@ -126,8 +126,14 @@ public class VersionController : ControllerBase
 
     [HttpPost("/licenses")]
     public IActionResult CreateLicense([FromBody] License license){
-        _licenseService.AddLicense(license);
+       var added = _licenseService.AddLicense(license);
 
+       if (added == false){
+
+        return Conflict(new{
+            message = "License ID already exists"
+        });
+       }
         return Ok(license);
     }
 }

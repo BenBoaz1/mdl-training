@@ -29,9 +29,19 @@ public class LicenseService {
         return _licenses;
     }
 
-    public void AddLicense (License license)
+    public bool AddLicense (License license)
     {
+        var existingLicense = _licenses.FirstOrDefault(
+            item => item.Id == license.Id
+        );
+
+        if (existingLicense != null){
+            return false;
+        }
+
         _licenses.Add(license);
+
+        return true;
 
     }
 }
